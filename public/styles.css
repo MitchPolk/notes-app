@@ -1,23 +1,31 @@
 /* Body and Background */
-body {
+*{
     margin: 0;
     padding: 0;
-    font-family: Arial, sans-serif;
-    height: 100vh;
-    background: linear-gradient(to bottom right, #cc5500, #ffffff);
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+}
+
+.task-manager-box{
+    width: 100%;
+    min-height: 100vh;
+    padding: 10px;
+    background: linear-gradient(to bottom right, #cc5500, white);
 }
 
 /* Task Manager Box */
-.task-manager-box {
+.task-list{
     background-color: white;
-    width: 400px;
-    padding: 20px;
-    border-radius: 20px;
-    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    width: 100%;
+    max-width: 540px;
+    margin: 100px auto 20px;
+    padding: 40px 30px 70px;
+    border-radius: 10px;
+}
+.task-list h2{
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
 }
 
 .row{
@@ -25,25 +33,31 @@ body {
     align-items: center;
     justify-content: space-between;
     border-radius: 20px;
-    padding: 10px;
+    padding: 5px;
     background: #edeef0;
+    margin-bottom: 20px;
 }
 input{
     flex: 1;
     border: none;
     outline: none;
     background: transparent;
+    padding: 10px;
 }
 button{
     border: none;
     outline: none;
     padding: 16px 22px;
-    background: #cc5500;
+    background: #e7a77a;
     color: #fff;
     font-size: 20px;
     cursor: pointer;
     border-radius: 40px;
 }
+button:hover{
+    background: #cc5500;
+}
+
 ul li{
     list-style: none;
     font-size: 15px;
@@ -61,5 +75,27 @@ ul li::before{
     background-image: url(images/unchecked.png);
     background-size: cover;
     background-position: center;
-    top: 12px
+    top: 7px;
+    left: 17px;
+}
+ul li.checked{
+    color: #555;
+    text-decoration: line-through;
+}
+ul li.checked::before{
+    background-image: url(images/checked.png);
+}
+ul li span{
+    position: absolute;
+    right: 0;
+    top: 5px;
+    width: 40px;
+    height: 40px;
+    font-size: 15px;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+}
+ul li span:hover{
+    background: #edeef0;
 }

@@ -7,20 +7,20 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="task-manager-box">
-        <h1>Tasks</h1>
-        <div class="task-list" id="task-list">
-            <div class="row">
-                <input type="text" id="input-task-name" placeholder="Search">
-                <button>+</button>
-            </div>
-            <ul id="list-container">
-                <li>Task 1</li>
-                <li>Task 2</li>
-            </ul>
+<div class="task-manager-box">
+    <div class="task-list" id="task-list">
+        <h2>Tasks</h2>
+        <div class="row">
+            <input type="text" id="input-box" placeholder="Add the name of your task here">
+            <button onclick="addTask()">+</button>
         </div>
+        <ul id="list-container">
+            <!-- <li class="checked">Task 1</li>
+            <li>Task 2</li> -->
+        </ul>
     </div>
+</div>
 
-    <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
