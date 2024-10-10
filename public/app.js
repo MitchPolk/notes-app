@@ -20,21 +20,32 @@ async function readRecords(airtableToken, baseId, tableId, maxRecords){
     }).eachPage(function page(records, fetchNextPage) {
         // This function (`page`) will get called for each page of records.
     
+        const taskList = document.getElementById('task-list');
+        taskList.innerHTML = '';
+
         records.forEach(function(record) {
-            console.log('Record:', record);
+            const task = document.createElement('p');
+            task.textContent = record.fields.Name + ' - ' + record.fields.Status;
+            taskList.appendChild(task)
+            // console.log('Record:', record);
+            console.log('Task:', task)
         });
     
         // To fetch the next page of records, call `fetchNextPage`.
         // If there are more records, `page` will get called again.
         // If there are no more records, `done` will get called.
-        fetchNextPage();
-    
+        if (fetchNextPage) {
+            fetchNextPage();
+        }
     }, function done(err) {
-        if (err) { console.error(err); return; }
+        if (err) { 
+            console.error(err); 
+            return; 
+        }
     });
 }
 
-readRecords(airtableToken, baseId, tableTasks, 5)
+// readRecords(airtableToken, baseId, tableTasks, 5)
 
 async function createRecord(airtableToken, baseId, tableId, newRecord) {
     var base = new Airtable({apiKey: airtableToken}).base(baseId);
