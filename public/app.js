@@ -10,6 +10,7 @@ async function fetchTasks() {
         tasks.forEach(task => {
             let li = document.createElement("li");
             li.textContent = task.name;
+            li.setAttribute("data-id", task.id);
             listContainer.appendChild(li);
             addDeleteButton(li)
         });
@@ -43,6 +44,7 @@ async function addTask() {
             console.log("Task added:", data); // For debugging
             let li = document.createElement("li");
             li.textContent = inputBox.value;
+            li.setAttribute("data-id", data.id)
             listContainer.appendChild(li);
             addDeleteButton(li);
 
