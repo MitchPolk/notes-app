@@ -13,6 +13,12 @@ async function fetchTasks() {
             li.setAttribute("data-id", task.id);
             listContainer.appendChild(li);
             addDeleteButton(li)
+            addStatusToggleListener(li)
+
+            if (task.status === 'Done'){
+                li.classList.add('checked')
+            }
+            
         });
     } catch (error) {
         console.error('Error fetching tasks:', error);
@@ -47,6 +53,8 @@ async function addTask() {
             li.setAttribute("data-id", data.id)
             listContainer.appendChild(li);
             addDeleteButton(li);
+            addStatusToggleListener(li)
+
 
         } else {
             console.error("Error adding task:", data);
@@ -77,6 +85,29 @@ function deleteTask(taskId, li) {
     })
     .catch(error => {
         console.error('Error deleting task:', error);
+    });
+}
+
+function addStatusToggleListener(li) {
+    li.addEventListener('click', async () => {
+        const taskId = li.getAttribute("data-id");
+
+        // Toggle the 'checked' class
+        const isChecked = li.classList.toggle('checked');
+        const newStatus = isChecked ? 'Done' : 'Todo';
+
+        // Send the new status to the server to update the Airtable record
+        try {
+            await fetch(`/api/tasks/${taskId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ status: newStatus }),
+            });
+        } catch (error) {
+            console.error('Error updating task status:', error);
+        }
     });
 }
 
